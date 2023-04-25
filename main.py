@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+
 import openai
 import json
 import os
 
-os.environ["HTTP_PROXY"] = "http://127.0.0.1:4780"
-os.environ["HTTPS_PROXY"] = "http://127.0.0.1:4780"
+# os.environ["HTTP_PROXY"] = "http://127.0.0.1:4780"
+# os.environ["HTTPS_PROXY"] = "http://127.0.0.1:4780"
 
 
 # 获取 api
@@ -26,7 +28,8 @@ openai.api_key = get_api_key()
 class ChatGPT:
     def __init__(self, user):
         self.user = user
-        self.messages = [{"role": "system", "content": "一个有10年Python开发经验的资深算法工程师"}]
+        # self.messages = [{"role": "system", "content": "一个有30年幼儿教育经验的老师"}]
+        self.messages = [{"role": "system", "content": "一个有5年flutter开发经验的工程师"}]
         self.filename = "./user_messages.json"
 
     def ask_gpt(self):
@@ -74,7 +77,7 @@ def main():
             chat = ChatGPT(user)
 
         # 提问
-        q = input(f"【{chat.user}】")
+        q = input(f"[{chat.user}]")
 
         # 逻辑判断
         if q == "0":
@@ -95,7 +98,7 @@ def main():
         # 提问-回答-记录
         chat.messages.append({"role": "user", "content": q})
         answer = chat.ask_gpt()
-        print(f"【ChatGPT】{answer}")
+        print(f"[ChatGPT] {answer}")
         chat.messages.append({"role": "assistant", "content": answer})
 
 
